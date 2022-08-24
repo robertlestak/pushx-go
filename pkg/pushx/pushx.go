@@ -3,6 +3,7 @@ package pushx
 import (
 	"bytes"
 	"errors"
+	"fmt"
 	"io"
 	"os"
 	"os/exec"
@@ -36,6 +37,9 @@ func Pushx(input io.Reader, args []string) error {
 		err.WriteString(err.String())
 		err.WriteString(out.String())
 		return errors.New(err.String())
+	}
+	if len(err.Bytes()) > 0 {
+		fmt.Fprint(os.Stderr, err.String())
 	}
 	return nil
 }
