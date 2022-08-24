@@ -32,6 +32,7 @@ func Pushx(input io.Reader, args []string) error {
 	var err bytes.Buffer
 	cmd.Stdout = &out
 	cmd.Stderr = &err
+	e = cmd.Run()
 	if e != nil {
 		var err bytes.Buffer
 		err.WriteString(err.String())
